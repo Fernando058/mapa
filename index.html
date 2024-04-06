@@ -29,7 +29,7 @@
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     try {
-                        var locations = JSON.parse([this.responseText]);
+                        var locations = JSON.parse(this.responseText);
                         for (var i = 0; i < locations.length; i++) {
                             var marker = new google.maps.Marker({
                                 position: { lat: parseFloat(locations[i].latitude), lng: parseFloat(locations[i].longitude) },
