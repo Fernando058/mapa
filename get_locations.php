@@ -15,14 +15,14 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM locations";
 $result = $conn->query($sql);
 
-$locations = array();
+$sites = array();
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $locations[] = $row;
+        $sites[] = $row;
     }
 }
 
-echo json_encode($locations);
+echo json_encode($sites);
 
 $conn->close();
 ?>
