@@ -21,8 +21,7 @@ if ($result->num_rows > 0) {
         $sites[] = $row;
     }
 }
-
-echo json_encode($sites);
-
+$json = json_encode($sites);
+echo $json;
 $conn->close();
 ?>
