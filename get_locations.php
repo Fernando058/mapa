@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obtener las ubicaciones
-$sql = "SELECT name, description, latitude, longitude FROM locations";
+$sql = "SELECT * FROM locations";
 $result = $conn->query($sql);
 
 $locations = array();
