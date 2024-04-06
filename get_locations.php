@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 // Conexión a la base de datos
 $servername="bou07gzqrfgzqgcjkzst-mysql.services.clever-cloud.com";
 $username="usvnedkk1cscttv7";
