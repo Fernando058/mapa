@@ -25,11 +25,11 @@
 
 
             // Llamada AJAX para obtener datos de la base de datos
-            var xmlhttp = new XMLHttpRequest();
+            let xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     try {
-                        var locations = JSON.parse(this.responseText);
+                        let locations = JSON.parse(this.responseText);
                         for (var i = 0; i < locations.length; i++) {
                             var marker = new google.maps.Marker({
                                 position: { lat: parseFloat(locations[i].latitude), lng: parseFloat(locations[i].longitude) },
