@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Mapa de animales en situaci&oacute;n de riesgo</title>
     <style>
@@ -10,6 +10,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Mapa de animales en situaci&oacute;n de riesgo</h1>
     <div id="map"></div>
@@ -18,30 +19,34 @@
         async function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 8,
-                center: {lat: -2.2474577, lng: -79.6954046} 
+                center: { lat: -2.2474577, lng: -79.6954046 }
             });
 
-         
+
 
             // Llamada AJAX para obtener datos de la base de datos
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    const locations = JSON.parse(this.responseText);
-                    for (var i = 0; i < locations.length; i++) {
-                        var marker = new google.maps.Marker({
-                            position: {lat: parseFloat(locations[i].latitude), lng: parseFloat(locations[i].longitude)},
-                            map: map,
-                            title: locations[i].name
-                        });
+                    try {
+                        var locations = JSON.parse(this.responseText);
+                        for (var i = 0; i < locations.length; i++) {
+                            var marker = new google.maps.Marker({
+                                position: { lat: parseFloat(locations[i].latitude), lng: parseFloat(locations[i].longitude) },
+                                map: map,
+                                title: locations[i].name
+                            });
 
-                        var infowindow = new google.maps.InfoWindow({
-                            content: locations[i].name
-                        });
+                            var infowindow = new google.maps.InfoWindow({
+                                content: locations[i].description
+                            });
 
-                        marker.addListener('click', function() {
-                            infowindow.open(map, marker);
-                        });
+                            marker.addListener('click', function () {
+                                infowindow.open(map, marker);
+                            });
+                        }
+                    } catch (e) {
+                        console.error("Error parsing JSON:", e);
                     }
                 }
             };
@@ -49,15 +54,10 @@
             xmlhttp.send();
         }
     </script>
-          
-<script 
- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXyC_Q4W0yApggbhBiywgPR4SUSFk_CXk&callback=initMap" defer>
-</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXyC_Q4W0yApggbhBiywgPR4SUSFk_CXk&callback=initMap"
+        defer>
+        </script>
 </body>
+
 </html>
-
-
-
-
-
-
